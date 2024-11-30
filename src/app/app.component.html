@@ -1,6 +1,6 @@
 <nz-layout class="min-h-screen bg-white">
   <!-- Header -->
-  <app-header></app-header>
+  <app-header *ngIf="!isLoginPage"></app-header> <!-- Only show header if not on the login page -->
 
   <!-- Main Content -->
   <nz-layout>
@@ -17,8 +17,8 @@
   </nz-layout>
 
   <!-- Footer -->
-<nz-footer style="background-color: #333333; padding: 10px; text-align: center; position: fixed; bottom: 0; width: 100%; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);">
-  <p style="margin: 0; color: #b0b0b0;">&copy; 2024 RBAC Management System. All rights reserved.</p>
-</nz-footer>
+  <nz-footer *ngIf="!isLoginPage" style="background-color: #333333; padding: 10px; text-align: center; position: fixed; bottom: 0; width: 100%; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);">
+    <p style="margin: 0; color: #b0b0b0;">&copy; 2024 RBAC Management System. All rights reserved.</p>
+  </nz-footer>
 
 </nz-layout>

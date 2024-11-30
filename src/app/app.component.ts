@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingService } from './core/services/loading.service';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,10 @@ import { LoadingService } from './core/services/loading.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   isCollapsed = false;
   isLoading$ = this.loadingService.isLoading$;
+  isLoginPage: boolean = false;  // To check if user is on login page
   SIDENAV_ITEMS: any = [
     {
       label: 'Home',
@@ -47,7 +50,30 @@ export class AppComponent {
     },
   ];
 
-  constructor(private loadingService: LoadingService) { }
+  constructor(
+    private loadingService: LoadingService,
+    private router: Router,
+    private authService: AuthService,  // Assuming you have an AuthService for handling user login and roles
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    // Check if the current route is login page
+    this.route.url.subscribe(url => {
+      this.isLoginPage = url[0]?.path === 'login';  // Adjust based on your route setup
+    });
+
+    // Redirect the user after login based on their role (if authenticated)
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        if (user.type === 'Admin') {
+          this.router.navigate(['/home']);
+        } else if (user.type === 'User') {
+          this.router.navigate(['/welcome-user']);
+        }
+      }
+    });
+  }
 
   toggleCollapsed() {
     this.isCollapsed = !this.isCollapsed;

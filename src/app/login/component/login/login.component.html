@@ -1,0 +1,62 @@
+<div class="container mx-auto p-6">
+  <nz-card nzTitle="Login" class="rounded-lg shadow-xl">
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+      <!-- Username Field -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Username <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Email is required'" class="block">
+            <input
+              nz-input
+              formControlName="email"
+              placeholder="Enter your email"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Password <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Password is required'" class="block">
+            <input
+              nz-input
+              type="password"
+              formControlName="password"
+              placeholder="Enter your password"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-end space-x-4 mt-6">
+        <!-- Submit Button -->
+        <button
+          nz-button
+          nzType="primary"
+          class="bg-blue-600 text-white px-6 py-2 text-lg rounded-md hover:bg-blue-700 transition duration-300 focus:ring-2 focus:ring-blue-400"
+        >
+          Login
+        </button>
+
+        <!-- Cancel Button -->
+        <button
+          nz-button
+          nzType="default"
+          (click)="cancel()"
+          class="bg-gray-200 text-gray-700 px-6 py-2 text-lg rounded-md hover:bg-gray-300 transition duration-300 focus:ring-2 focus:ring-gray-400"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </nz-card>
+</div>

@@ -14,12 +14,15 @@ import { provideHttpClient } from '@angular/common/http';
 import { NgZorroModule } from './ngzorro.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';  // Import this module
 import { HttpInterceptorService } from './core/interceptors/api.interceptor';
+import { LoginComponent } from './login/component/login/login.component';
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
 
   imports: [
@@ -30,6 +33,7 @@ registerLocaleData(en);
     CoreModule,
     NgZorroModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
 
   providers: [
