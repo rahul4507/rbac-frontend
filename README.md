@@ -1,7 +1,5 @@
 <h1 align="center" id="title" style="margin-bottom: 1rem">rbac-frontend</h1>
 
-<p align="center"><img src="https://socialify.git.ci/rahul4507/rbac-frontend/image?description=1&amp;descriptionEditable=A%20secure%20app%20with%20role-based%20access%20control%2C%20built%20using%20Angular%2016%2C%20Ng-Zorro%2C%20Tailwind%20CSS%2C%20Node.js%2C%20Express.js%2C%20and%20MongoDB%2C%20featuring%20lazy%20loading%20and%20GitHub%20Actions%20for%20automated%20deployment.&amp;name=1&amp;owner=1&amp;pattern=Solid&amp;theme=Light" alt="project-image" style="border-radius: 1rem; width: 80rem"></p>
-
 <p id="description">The RBAC Management System is a comprehensive role-based access control (RBAC) application that enables administrators to manage user's roles and permissions in a secure and efficient way. The platform is built using Angular and utilizes Ng-Zorro for UI components and Tailwind CSS for responsive design. This system ensures secure access management and is highly customizable for various user roles and permissions.</p>
 
 <h2 style="margin-bottom: 0.5rem">Deployment Link 📦</h2>
@@ -93,38 +91,3 @@ src/
 ├── index.html
 └── main.ts
 ```
-
-<h2 style="margin-bottom: 0.5rem">Screenshots ✅</h2>
-
-- Home Page
-
-![Home](demo/1.png)
-
-- About Project
-
-![About Porject](demo/2.png)
-
-- About Developer
-
-![About Developer](demo/3.png)
-
-- About Tech Stack Used
-
-![About Tech Stack used](demo/4.png)
-
-- User Functionalities
-
-![](demo/5.png)
-![](demo/6.png)
-![](demo/7.png)
-![](demo/8.png)
-
-- Role Functionalities
-
-![](demo/9.png)
-![](demo/10.png)
-
-<h2 style="margin-bottom: 0.5rem">Contact 💡</h2> 
-For inquiries, please reach out to:
-<br>
-Rahul Hiragond: rahulhiragond04@gmail.com ✉️
