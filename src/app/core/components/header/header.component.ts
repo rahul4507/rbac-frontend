@@ -4,23 +4,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css'],
 })
-
 export class HeaderComponent {
-  isSubmenuOpen = false;
+  activeMenu = 'home'; // Track active menu
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  toggleArrow(isOpen: boolean): void {
-    this.isSubmenuOpen = isOpen;
-  }
-
-  isSelected(route: string): boolean {
-    return this.router.url === route || this.router.url.startsWith(route);
-  }
-
-  navigateTo(route: string): void {
+  navigate(route: string): void {
+    this.activeMenu = route;
     this.router.navigate([route]);
   }
 }

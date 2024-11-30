@@ -1,73 +1,24 @@
-<nz-layout class="min-h-screen">
-  <!-- Side Nav -->
-  <nz-sider
-    [nzCollapsed]="isCollapsed"
-    [nzWidth]="200"
-    nzCollapsible
-    nzTheme="light"
-    class="fixed left-0 top-0 bottom-0 z-10"
-  >
-    <button nz-button nzType="primary" (click)="toggleCollapsed()" class="m-4">
-      <span nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
-    </button>
-    <ul
-      nz-menu
-      nzMode="inline"
-      nzTheme="light"
-      [nzInlineCollapsed]="isCollapsed"
-    >
-      <ng-container *ngFor="let item of SIDENAV_ITEMS">
-        <li
-          nz-menu-item
-          [nzSelected]="item.selected"
-          *ngIf="item.child.length === 0"
-          [routerLink]="item.link"
-        >
-          <span nz-icon [nzType]="item.iconName"></span>
-          <span>{{ item.label }}</span>
-        </li>
-        <li
-          nz-submenu
-          [nzTitle]="item.label"
-          *ngIf="item.child.length > 0"
-          [nzIcon]="item.iconName"
-        >
-          <ul>
-            <li
-              nz-menu-item
-              *ngFor="let child of item.child"
-              [routerLink]="child.link"
-            >
-              <span nz-icon [nzType]="child.iconName"></span>
-              <span>{{ child.label }}</span>
-            </li>
-          </ul>
-        </li>
-      </ng-container>
-    </ul>
-  </nz-sider>
+<nz-layout class="min-h-screen bg-white">
+  <!-- Header -->
+  <app-header></app-header>
 
-  <nz-layout class="bg-white ml-200 pl-200">
-    <!-- Header -->
-    <app-header></app-header>
-
-    <!-- Main Content -->
-    <nz-layout>
-      <nz-layout>
-        <nz-content class="overflow-y-auto">
-          <!-- Loader -->
-          <nz-spin
-            *ngIf="isLoading$ | async"
-            nzSimple
-            nzSize="large"
-            class="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 bg-opacity-50"
-          ></nz-spin>
-          <router-outlet></router-outlet>
-        </nz-content>
-      </nz-layout>
-    </nz-layout>
-
-    <!-- Footer -->
-    <app-footer></app-footer>
+  <!-- Main Content -->
+  <nz-layout>
+    <nz-content class="overflow-y-auto">
+      <!-- Loader -->
+      <nz-spin
+        *ngIf="isLoading$ | async"
+        nzSimple
+        nzSize="large"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 bg-opacity-50"
+      ></nz-spin>
+      <router-outlet></router-outlet>
+    </nz-content>
   </nz-layout>
+
+  <!-- Footer -->
+<nz-footer style="background-color: #333333; padding: 10px; text-align: center; position: fixed; bottom: 0; width: 100%; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);">
+  <p style="margin: 0; color: #b0b0b0;">&copy; 2024 RBAC Management System. All rights reserved.</p>
+</nz-footer>
+
 </nz-layout>

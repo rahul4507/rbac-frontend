@@ -1,62 +1,78 @@
-<nz-layout>
-  <nz-header
-    class="header-bg text-dark flex items-center justify-between px-4 shadow-md w-full"
+<ul nz-menu nzMode="horizontal" class="nav-menu" [nzTheme]="'dark'">  
+  <!-- Home Menu -->
+  <li
+    nz-menu-item
+    [nzSelected]="activeMenu === 'home'"
+    (click)="navigate('home')"
   >
-    <h4 class="text-lg mt-2 cursor-pointer" (click)="navigateTo('/home')">
-      <span nz-icon nzType="safety" class="mr-2 h-8"></span>
-      <span class="text-blue-600">RBAC Management System</span>
-    </h4>
-    <ul nz-menu nzMode="horizontal" class="m-0 header-bg">
+    <span nz-icon nzType="home" class="mr-2"></span>Home
+  </li>
+
+  <!-- About Dropdown -->
+  <li nz-submenu nzTitle="About" nzPopupClassName="dropdown-menu-fixed">
+    <ul>
       <li
         nz-menu-item
-        [routerLink]="'/home'"
-        routerLinkActive="nz-selected"
-        [nzSelected]="isSelected('/home')"
+        [nzSelected]="activeMenu === 'about/project'"
+        (click)="navigate('about/project')"
       >
-        Home
+        Project
       </li>
       <li
-        nz-submenu
-        nzPlacement="bottomRight"
-        [nzOpen]="isSubmenuOpen"
-        (nzOpenChange)="toggleArrow($event)"
-        [nzTitle]="menuTitle"
+        nz-menu-item
+        [nzSelected]="activeMenu === 'about/developer'"
+        (click)="navigate('about/developer')"
       >
-        <ng-template #menuTitle>
-          <span>About</span>
-          <span
-            nz-icon
-            [nzType]="isSubmenuOpen ? 'up' : 'down'"
-            class="ml-1"
-          ></span>
-        </ng-template>
-        <ul>
-          <li
-            nz-menu-item
-            [routerLink]="'/about/project'"
-            routerLinkActive="nz-selected"
-            [nzSelected]="isSelected('/about/project')"
-          >
-            Project
-          </li>
-          <li
-            nz-menu-item
-            [routerLink]="'/about/developer'"
-            routerLinkActive="nz-selected"
-            [nzSelected]="isSelected('/about/developer')"
-          >
-            Developer
-          </li>
-          <li
-            nz-menu-item
-            [routerLink]="'/about/tech'"
-            routerLinkActive="nz-selected"
-            [nzSelected]="isSelected('/about/tech')"
-          >
-            Tech Stack Used
-          </li>
-        </ul>
+        Developer
+      </li>
+      <li
+        nz-menu-item
+        [nzSelected]="activeMenu === 'about/tech'"
+        (click)="navigate('about/tech')"
+      >
+        Tech Stack Used
       </li>
     </ul>
-  </nz-header>
-</nz-layout>
+  </li>
+
+  <!-- User Dropdown -->
+  <li nz-submenu nzTitle="User" nzPopupClassName="dropdown-menu-fixed">
+    <ul>
+      <li
+        nz-menu-item
+        [nzSelected]="activeMenu === 'users/manage'"
+        (click)="navigate('users/manage')"
+      >
+        Manage Users
+      </li>
+      <li
+        nz-menu-item
+        [nzSelected]="activeMenu === 'users/add'"
+        (click)="navigate('users/add')"
+      >
+        Add User
+      </li>
+    </ul>
+  </li>
+
+  <!-- Roles Dropdown -->
+  <li nz-submenu nzTitle="Roles" nzPopupClassName="dropdown-menu-fixed">
+    <ul>
+      <li
+        nz-menu-item
+        [nzSelected]="activeMenu === 'roles/manage'"
+        (click)="navigate('roles/manage')"
+      >
+        Manage Roles
+      </li>
+      <li
+        nz-menu-item
+        [nzSelected]="activeMenu === 'roles/add'"
+        (click)="navigate('roles/add')"
+      >
+        Add Role
+      </li>
+    </ul>
+  </li>
+
+</ul>

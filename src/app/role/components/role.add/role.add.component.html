@@ -9,68 +9,63 @@
 </nz-breadcrumb>
 
 <div class="container mx-auto p-6">
-  <nz-card [nzTitle]="getTitle()">
+  <nz-card [nzTitle]="getTitle()" class="rounded-lg shadow-xl">
     <form nz-form [formGroup]="roleForm" (ngSubmit)="submitForm()">
+      <!-- Role Name Field -->
       <div class="grid grid-cols-12 gap-4 my-8">
         <label class="col-span-4 font-medium text-sm text-gray-700">
-          Role Name<span class="text-red-500">*</span>
+          Role Name <span class="text-red-500">*</span>
         </label>
         <div class="col-span-8">
           <nz-form-control
-            [nzErrorTip]="
-              'Role name is required and must be at least 3 characters'
-            "
+            [nzErrorTip]="'Role name is required and must be at least 3 characters'"
             class="block"
           >
             <input
               nz-input
               formControlName="name"
               placeholder="Enter role name"
-              class="w-full"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </nz-form-control>
         </div>
       </div>
 
+      <!-- Active Switch -->
       <div class="grid grid-cols-12 gap-4 my-8">
-        <label class="col-span-4 font-medium text-sm text-gray-700">
-          Active
-        </label>
+        <label class="col-span-4 font-medium text-sm text-gray-700">Active</label>
         <div class="col-span-8">
-          <nz-switch formControlName="is_active"></nz-switch>
+          <nz-switch formControlName="is_active" class="custom-switch" ></nz-switch>
         </div>
       </div>
 
+      <!-- Role Identifier Field -->
       <div class="grid grid-cols-12 gap-4 my-8">
         <label class="col-span-4 font-medium text-sm text-gray-700">
-          Role Identifier<span class="text-red-500">*</span>
+          Role Identifier <span class="text-red-500">*</span>
         </label>
         <div class="col-span-8">
           <nz-form-control
-            [nzErrorTip]="
-              'Role identifier is required and must be at least 3 characters'
-            "
+            [nzErrorTip]="'Role identifier is required and must be at least 3 characters'"
             class="block"
           >
             <input
               nz-input
               formControlName="role"
               placeholder="Enter role identifier"
-              class="w-full"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </nz-form-control>
         </div>
       </div>
 
+      <!-- Permissions Field -->
       <div class="grid grid-cols-12 gap-4 my-4">
         <label class="col-span-4 font-medium text-sm text-gray-700">
-          Permissions<span class="text-red-500">*</span>
+          Permissions <span class="text-red-500">*</span>
         </label>
         <div class="col-span-8">
-          <nz-form-control
-            [nzErrorTip]="'Role must have at least one permission assigned'"
-            class="block"
-          >
+          <nz-form-control [nzErrorTip]="'Role must have at least one permission assigned'" class="block">
             <nz-select
               class="w-full"
               [nzMaxTagCount]="3"
@@ -87,32 +82,48 @@
                 [nzLabel]="option.name"
               ></nz-option>
             </nz-select>
-            <ng-template #tagPlaceHolder let-selectedList
-              >and {{ selectedList.length }} more selected</ng-template
-            >
+            <ng-template #tagPlaceHolder let-selectedList>
+              and {{ selectedList.length }} more selected
+            </ng-template>
           </nz-form-control>
         </div>
       </div>
 
+      <!-- Remarks Field -->
       <div class="grid grid-cols-12 gap-4 my-8">
-        <label class="col-span-4 font-medium text-sm text-gray-700">
-          Remarks
-        </label>
+        <label class="col-span-4 font-medium text-sm text-gray-700">Remarks</label>
         <div class="col-span-8">
           <nz-form-control class="block">
             <textarea
               nz-input
               formControlName="remarks"
               placeholder="Enter Remarks"
-              class="w-full"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </nz-form-control>
         </div>
       </div>
 
+      <!-- Buttons -->
       <div class="flex justify-end space-x-4 mt-4">
-        <button nz-button nzType="primary">{{ btnName }}</button>
-        <button nz-button nzType="default" (click)="cancel()">Cancel</button>
+        <!-- Submit Button with Custom Color -->
+        <button
+          nz-button
+          nzType="primary"
+          class="bg-blue-600 text-white px-6 py-2 text-lg rounded-md hover:bg-blue-700 transition duration-300 focus:ring-2 focus:ring-blue-400"
+        >
+          {{ btnName }}
+        </button>
+
+        <!-- Cancel Button with Custom Style -->
+        <button
+          nz-button
+          nzType="default"
+          (click)="cancel()"
+          class="bg-gray-200 text-gray-700 px-6 py-2 text-lg rounded-md hover:bg-gray-300 transition duration-300 focus:ring-2 focus:ring-gray-400"
+        >
+          Cancel
+        </button>
       </div>
     </form>
   </nz-card>

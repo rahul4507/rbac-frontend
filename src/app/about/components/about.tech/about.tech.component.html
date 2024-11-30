@@ -1,36 +1,29 @@
 <main class="bg-gray-50">
   <div class="max-w-screen-xl mx-auto px-6">
-    <div
-      class="grid grid-cols-1 min-h-screen md:grid-cols-2 gap-8 items-center px-4 fixed top-8"
-    >
+    <div class="grid grid-cols-1 min-h-screen md:grid-cols-2 gap-8 items-center px-4 fixed top-8">
+      <!-- Left Side Content -->
       <div class="text-left">
-        <h1 class="text-4xl font-normal text-gray-900">
+        <h1 class="text-4xl font-semibold text-gray-900">
           About the
-          <span class="text-blue-700 font-normal primary-font">Tech Stack</span>
+          <span class="text-blue-700 font-semibold primary-font">Tech Stack</span>
         </h1>
 
         <p class="text-lg text-gray-600">
-          This project is built with a modern tech stack to ensure a seamless
-          user experience, scalability, and efficient performance. Below are the
-          core technologies used:
+          This project is built using a modern tech stack to ensure seamless user experience, scalability, and efficiency. Below are the core technologies powering this project:
         </p>
 
         <p class="text-lg text-gray-600">
           <span class="text-blue-700 font-semibold">Frontend: </span>
-          The UI is built using <span class="text-blue-700">Angular</span> for
-          dynamic, reactive components, paired with
-          <span class="text-blue-700">Tailwind CSS</span> for clean, responsive
-          designs.
+          The user interface is built with <span class="text-blue-700 font-semibold">Angular</span>, allowing for dynamic and responsive components, along with
+          <span class="text-blue-700 font-semibold">Tailwind CSS</span> for styling, ensuring a clean and mobile-friendly design.
         </p>
 
         <p class="text-lg text-gray-600">
           <span class="text-blue-700 font-semibold">Backend: </span>
-          The backend uses <span class="text-blue-700">Node.js</span> for
-          efficient server-side logic and API management. It's designed for
-          scalability and rapid development.
+          The backend is powered by <span class="text-blue-700 font-semibold">Node.js</span> for efficient server-side logic, API management, and scalability.
         </p>
 
-        <div class="space-x-4">
+        <div class="space-x-4 mt-6">
           <button
             class="bg-blue-600 text-white px-8 py-2 text-lg hover:bg-blue-700 transition duration-300"
             (click)="redirectToGitHubRepo()"
@@ -45,8 +38,10 @@
           </button>
         </div>
       </div>
+
+      <!-- Right Side Image -->
       <div class="flex justify-center">
-        <img src="../../assets/images/about-tech.png" alt="Tech Stack" />
+        <img src="../../assets/images/about-tech.png" alt="Tech Stack" class="rounded-lg shadow-lg" />
       </div>
     </div>
   </div>

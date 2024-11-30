@@ -1,11 +1,122 @@
+/* General Styles */
 html,
 body,
-.min-h-screen,
 .nz-layout {
-  height: 100%;
   margin: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
-.header-bg {
-  background-color: #f8f8f8;
+/* Header Styles */
+.top-nav-header {
+  background-color: #24292f; /* Dark Gray */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 64px;
+  position: relative; /* Ensure submenu stays within header */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.logo span {
+  font-size: 24px;
+  color: #61dafb; /* Light Blue */
+}
+
+.logo h4 {
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Menu Styles */
+.nav-menu {
+  margin-left: auto;
+  display: flex;
+}
+
+.nav-menu .ant-menu-item,
+.nav-menu .ant-menu-submenu-title {
+  color: #ffffff;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.nav-menu .ant-menu-item:hover,
+.nav-menu .ant-menu-submenu-title:hover {
+  background-color: #444c56;
+}
+
+.nav-menu .ant-menu-item-selected {
+  background-color: #0366d6; /* Blue Highlight */
+  color: #ffffff;
+}
+
+/* Fix for the dropdown menu (submenu) */
+.nz-submenu {
+  position: absolute;
+  top: 100%; /* Position submenu right below the parent item */
+  left: 0;
+  z-index: 10;
+  background-color: #24292f; /* Same as header background */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+}
+
+.nz-menu-submenu-popup {
+  min-width: 160px;
+}
+
+.nz-menu-item {
+  padding: 8px 16px;
+}
+
+/* Ensure the dropdown does not overflow the screen */
+.nz-menu-submenu {
+  overflow: hidden;
+}
+
+.nav-menu .ant-menu-submenu {
+  white-space: nowrap;
+}
+
+/* Content Styles */
+.content-container {
+  padding: 20px;
+  background-color: #f3f4f6; /* Light Gray */
+  min-height: calc(100vh - 128px); /* Adjust for header and footer height */
+}
+
+/* Add this CSS to your global stylesheet or component styles */
+.custom-submenu .ant-dropdown-menu {
+  left: 0 !important; /* Ensure the dropdown is aligned properly */
+  right: auto !important; /* Prevent overflow */
+  min-width: 180px; /* Set a minimum width for better alignment */
+}
+/* CSS to fix submenu overflow issue */
+.nz-menu nz-submenu {
+  position: relative;
+}
+
+.nz-menu nz-submenu .nz-menu {
+  max-width: 220px; /* Prevent the submenu from becoming too wide */
+  left: 0 !important;  /* Ensure it stays aligned */
+  right: auto !important;  /* Remove any overflow to the right */
+  z-index: 9999;  /* Ensure it appears above other content */
+}
+
+.nz-menu nz-submenu:hover > .nz-menu {
+  display: block;  /* Ensure submenu is shown when hovered */
+}
+
+.nz-menu nz-submenu > .nz-menu {
+  display: none;  /* Ensure submenus are hidden initially */
+  position: absolute;
+  top: 0;
+  left: 100%;
 }
