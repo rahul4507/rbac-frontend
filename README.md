@@ -29,3 +29,14 @@ The application is live! Explore it here:
    ```bash  
    git clone https://github.com/rahul4507/rbac-frontend  
    cd rbac-frontend  
+3. Install dependencies:
+
+```bash
+  npm install
+```
+
+4. Run the development server:
+
+```bash
+  npm start
+```
