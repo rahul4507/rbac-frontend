@@ -107,6 +107,23 @@
 
       <div class="grid grid-cols-12 gap-4 my-8">
         <label class="col-span-4 font-medium text-sm text-gray-700">
+          Password<span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Password is required'" class="block">
+            <input
+              nz-input
+              formControlName="password"
+              type="password"
+              placeholder="Enter password"
+              class="w-full"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
           Status
         </label>
         <div class="col-span-8">

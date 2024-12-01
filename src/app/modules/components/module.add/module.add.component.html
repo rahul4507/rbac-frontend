@@ -1,0 +1,78 @@
+<nz-breadcrumb style="padding: 1.5rem; padding-bottom: 0; margin-left: 0.5rem">
+  <nz-breadcrumb-item>
+    <span nz-icon nzType="home" [routerLink]="'/home'"></span>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/modules/manage']">Modules</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>Add New Module</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="container mx-auto p-6">
+  <nz-card [nzTitle]="'Add New Module'" class="rounded-lg shadow-xl">
+    <form nz-form [formGroup]="moduleForm" (ngSubmit)="submitForm()">
+      <!-- Module Name -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Module Name <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control
+            [nzErrorTip]="'Module name is required'"
+            class="block"
+          >
+            <input
+              nz-input
+              formControlName="name"
+              id="moduleName"
+              placeholder="Enter module name"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Module Description -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Description
+        </label>
+        <div class="col-span-8">
+          <nz-form-control class="block">
+            <textarea
+              nz-input
+              formControlName="description"
+              id="moduleDescription"
+              placeholder="Enter module description"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-end space-x-4 mt-4">
+        <!-- Submit Button -->
+        <button
+          nz-button
+          nzType="primary"
+          class="bg-blue-600 text-white px-6 py-2 text-lg rounded-md hover:bg-blue-700 transition duration-300 focus:ring-2 focus:ring-blue-400"
+          [disabled]="moduleForm.invalid"
+          type="submit"
+        >
+          Add Module
+        </button>
+
+        <!-- Cancel Button -->
+        <button
+          nz-button
+          nzType="default"
+          (click)="cancel()"
+          class="bg-gray-200 text-gray-700 px-6 py-2 text-lg rounded-md hover:bg-gray-300 transition duration-300 focus:ring-2 focus:ring-gray-400"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </nz-card>
+</div>

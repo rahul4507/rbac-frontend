@@ -37,7 +37,15 @@
       </div>
 
       <!-- Buttons -->
-      <div class="flex justify-end space-x-4 mt-6">
+      <div class="flex justify-between items-center mt-6">
+        <!-- Register Link -->
+        <a
+          class="text-blue-500 underline text-sm cursor-pointer hover:text-blue-700 transition"
+          (click)="navigateToRegister()"
+        >
+          Don't have an account? Register here
+        </a>
+
         <!-- Submit Button -->
         <button
           nz-button
@@ -45,16 +53,6 @@
           class="bg-blue-600 text-white px-6 py-2 text-lg rounded-md hover:bg-blue-700 transition duration-300 focus:ring-2 focus:ring-blue-400"
         >
           Login
-        </button>
-
-        <!-- Cancel Button -->
-        <button
-          nz-button
-          nzType="default"
-          (click)="cancel()"
-          class="bg-gray-200 text-gray-700 px-6 py-2 text-lg rounded-md hover:bg-gray-300 transition duration-300 focus:ring-2 focus:ring-gray-400"
-        >
-          Cancel
         </button>
       </div>
     </form>

@@ -15,14 +15,23 @@ import { NgZorroModule } from './ngzorro.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';  // Import this module
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar'; // Import NzAvatarModule
+import { NzMenuModule } from 'ng-zorro-antd/menu'; // Import NzMenuModule
 import { HttpInterceptorService } from './core/interceptors/api.interceptor';
 import { LoginComponent } from './login/component/login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ModuleAddComponent } from './modules/components/module.add/module.add.component';
+import { ModuleManageComponent } from './modules/components/module.manage/module.manage.component';
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    ModuleAddComponent,
+    ModuleManageComponent
   ],
 
   imports: [
@@ -34,6 +43,9 @@ registerLocaleData(en);
     NgZorroModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NzPopoverModule,
+    NzMenuModule,
+    NzAvatarModule,
   ],
 
   providers: [

@@ -6,7 +6,6 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   selector: 'app-user-manage',
   templateUrl: './user.manage.component.html',
 })
-
 export class UserManageComponent {
   users: any = [];
   searchData: string = '';
@@ -16,15 +15,16 @@ export class UserManageComponent {
     'Phone',
     'DOB',
     'Role',
+    'Modules',
     'Status',
     'Created Date',
     'Action'
-  ]
+  ];
 
   constructor(
     private userService: UserService,
-    private message: NzMessageService,
-  ) { }
+    private message: NzMessageService
+  ) {}
 
   ngOnInit(): void {
     this.getList();
@@ -32,7 +32,14 @@ export class UserManageComponent {
 
   getList(): void {
     this.userService.getUsers().subscribe((data: any) => {
-      this.users = data.data.users;
+      // Transform the data before storing it in 'users'
+      this.users = data.data.users.map((user: any) => ({
+        ...user,
+        role_name: user.role?.name, // Extracting role name
+        modules: user.role?.modules.map((module: any) => module.name).join(', '), // Joining module names
+        date_of_birth: new Date(user.date_of_birth), // Format date if needed
+        createdAt: new Date(user.createdAt), // Format created date if needed
+      }));
     });
   }
 
@@ -42,7 +49,13 @@ export class UserManageComponent {
       return;
     }
     this.userService.searchUser(this.searchData).subscribe((result: any) => {
-      this.users = result.data.users;
+      this.users = result.data.users.map((user: any) => ({
+        ...user,
+        role_name: user.role?.name,
+        modules: user.role?.modules.map((module: any) => module.name).join(', '),
+        date_of_birth: new Date(user.date_of_birth),
+        createdAt: new Date(user.createdAt),
+      }));
     });
   }
 

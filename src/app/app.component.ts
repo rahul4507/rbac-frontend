@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { LoadingService } from './core/services/loading.service';
-import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent implements OnInit {
   isCollapsed = false;
   isLoading$ = this.loadingService.isLoading$;
-  isLoginPage: boolean = false;  // To check if user is on login page
+  isLoginPage: boolean = false; // To check if the user is on login or empty page
   SIDENAV_ITEMS: any = [
     {
       label: 'Home',
@@ -52,27 +50,35 @@ export class AppComponent implements OnInit {
 
   constructor(
     private loadingService: LoadingService,
-    private router: Router,
-    private authService: AuthService,  // Assuming you have an AuthService for handling user login and roles
-    private route: ActivatedRoute
-  ) { }
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    // Check if the current route is login page
-    this.route.url.subscribe(url => {
-      this.isLoginPage = url[0]?.path === 'login';  // Adjust based on your route setup
+    // Check if the current route is the login or empty page
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const currentUrl = this.router.url;
+        this.isLoginPage = currentUrl === '/login' || currentUrl === '/user' || currentUrl === "/admin-register";
+      }
     });
 
     // Redirect the user after login based on their role (if authenticated)
-    this.authService.user$.subscribe(user => {
-      if (user) {
-        if (user.type === 'Admin') {
+    const storedUser = localStorage.getItem('user');
+
+    if (storedUser) {
+      try {
+        const user = JSON.parse(storedUser); // Parse the stored user object
+
+        if (user?.type === 'Admin') {
           this.router.navigate(['/home']);
-        } else if (user.type === 'User') {
-          this.router.navigate(['/welcome-user']);
+        } else if (user?.type === 'User') {
+          this.router.navigate(['/user']); // Redirect to empty page for users
         }
+      } catch (error) {
+        console.error('Failed to parse user from localStorage:', error);
+        localStorage.removeItem('user'); // Clear invalid user data
       }
-    });
+    }
   }
 
   toggleCollapsed() {

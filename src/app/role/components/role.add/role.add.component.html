@@ -11,6 +11,7 @@
 <div class="container mx-auto p-6">
   <nz-card [nzTitle]="getTitle()" class="rounded-lg shadow-xl">
     <form nz-form [formGroup]="roleForm" (ngSubmit)="submitForm()">
+      
       <!-- Role Name Field -->
       <div class="grid grid-cols-12 gap-4 my-8">
         <label class="col-span-4 font-medium text-sm text-gray-700">
@@ -35,7 +36,7 @@
       <div class="grid grid-cols-12 gap-4 my-8">
         <label class="col-span-4 font-medium text-sm text-gray-700">Active</label>
         <div class="col-span-8">
-          <nz-switch formControlName="is_active" class="custom-switch" ></nz-switch>
+          <nz-switch formControlName="is_active" class="custom-switch"></nz-switch>
         </div>
       </div>
 
@@ -59,45 +60,48 @@
         </div>
       </div>
 
-      <!-- Permissions Field -->
-      <div class="grid grid-cols-12 gap-4 my-4">
+      <!-- Modules Field -->
+       <div class="grid grid-cols-12 gap-4 my-4">
         <label class="col-span-4 font-medium text-sm text-gray-700">
-          Permissions <span class="text-red-500">*</span>
+          Modules<span class="text-red-500">*</span>
         </label>
         <div class="col-span-8">
-          <nz-form-control [nzErrorTip]="'Role must have at least one permission assigned'" class="block">
+          <nz-form-control
+            [nzErrorTip]="'Role must have at least one permission assigned'"
+            class="block"
+          >
             <nz-select
               class="w-full"
               [nzMaxTagCount]="3"
               [nzMaxTagPlaceholder]="tagPlaceHolder"
               nzMode="multiple"
               nzPlaceHolder="Please select permissions"
-              formControlName="permissions"
+              formControlName="modules"
               [nzShowArrow]="true"
               [nzShowSearch]="true"
             >
               <nz-option
-                *ngFor="let option of permissions"
-                [nzValue]="option.value"
+                *ngFor="let option of modules"
+                [nzValue]="option._id"
                 [nzLabel]="option.name"
               ></nz-option>
             </nz-select>
-            <ng-template #tagPlaceHolder let-selectedList>
-              and {{ selectedList.length }} more selected
-            </ng-template>
+            <ng-template #tagPlaceHolder let-selectedList
+              >and {{ selectedList.length }} more selected</ng-template
+            >
           </nz-form-control>
         </div>
       </div>
 
-      <!-- Remarks Field -->
+      <!-- Description Field -->
       <div class="grid grid-cols-12 gap-4 my-8">
-        <label class="col-span-4 font-medium text-sm text-gray-700">Remarks</label>
+        <label class="col-span-4 font-medium text-sm text-gray-700">Description</label>
         <div class="col-span-8">
           <nz-form-control class="block">
             <textarea
               nz-input
-              formControlName="remarks"
-              placeholder="Enter Remarks"
+              formControlName="description"
+              placeholder="Enter Description"
               class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </nz-form-control>
@@ -106,7 +110,6 @@
 
       <!-- Buttons -->
       <div class="flex justify-end space-x-4 mt-4">
-        <!-- Submit Button with Custom Color -->
         <button
           nz-button
           nzType="primary"
@@ -115,7 +118,6 @@
           {{ btnName }}
         </button>
 
-        <!-- Cancel Button with Custom Style -->
         <button
           nz-button
           nzType="default"

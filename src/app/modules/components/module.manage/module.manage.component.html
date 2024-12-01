@@ -2,7 +2,7 @@
   <nz-breadcrumb-item>
     <span nz-icon nzType="home" [routerLink]="'/home'"></span>
   </nz-breadcrumb-item>
-  <nz-breadcrumb-item>Manage Users</nz-breadcrumb-item>
+  <nz-breadcrumb-item>Manage Modules</nz-breadcrumb-item>
 </nz-breadcrumb>
 
 <div class="flex justify-between items-center mt-2 p-4">
@@ -20,33 +20,25 @@
       <span nz-icon nzType="search"></span>
     </ng-template>
   </div>
+
   <div>
-    <button nz-button nzType="primary" [routerLink]="['/users/add']">
-      Add User
+    <button nz-button nzType="primary" [routerLink]="['/modules/add']">
+      Add Module
     </button>
   </div>
 </div>
 
-<nz-table [nzData]="users" nzTableLayout="fixed" class="p-4">
+<nz-table [nzData]="modules" nzTableLayout="fixed" class="p-4">
   <thead>
     <tr>
-      <th *ngFor="let item of blocks">{{ item }}</th>
+      <th *ngFor="let item of tableColumns">{{ item }}</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of users">
-      <td>{{ item.name }}</td>
-      <td>{{ item.email }}</td>
-      <td>{{ item.phone }}</td>
-      <td>{{ item.date_of_birth | date }}</td>
-      <td>{{ item.role_name }}</td>
-      <td>{{ item.modules }}</td>
-      <td>
-        <nz-tag [nzColor]="item?.is_active ? 'green' : 'red'">
-          {{ item.is_active ? "Active" : "Inactive" }}
-        </nz-tag>
-      </td>
-      <td>{{ item.createdAt | date }}</td>
+    <tr *ngFor="let module of modules">
+      <td>{{ module.name }}</td>
+      <td>{{ module.description }}</td>
+      <td>{{ module.createdAt | date }}</td>
       <td class="space-x-2">
         <span
           nz-icon
@@ -54,7 +46,7 @@
           nz-tooltip
           nzTooltipTitle="Edit"
           class="cursor-pointer"
-          [routerLink]="['/users/edit', item._id]"
+          [routerLink]="['/modules/edit', module._id]"
         ></span>
         <span
           nz-icon
@@ -63,9 +55,9 @@
           nzTooltipTitle="Delete"
           class="cursor-pointer"
           nz-popconfirm
-          nzPopconfirmTitle="Are you sure delete this user?"
+          nzPopconfirmTitle="Are you sure delete this module?"
           nzPopconfirmPlacement="top"
-          (nzOnConfirm)="confirmDelete(item)"
+          (nzOnConfirm)="confirmDelete(module)"
         ></span>
       </td>
     </tr>

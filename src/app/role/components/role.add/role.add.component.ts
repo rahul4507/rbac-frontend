@@ -1,64 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RoleService } from '../../services/role.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModuleService } from '../../../modules/services/module.service'; // Add ModuleService for fetching modules
 
 @Component({
   selector: 'app-role-add',
   templateUrl: './role.add.component.html',
 })
-
-export class RoleAddComponent {
+export class RoleAddComponent implements OnInit {
   roleId: string = '';
   operation = 'Add';
   btnName = 'Add Role';
   roleForm!: FormGroup;
-  permissions: any[] = [
-    {
-      name: 'View Users',
-      value: 'View Users'
-    },
-    {
-      name: 'Create Users',
-      value: 'Create Users'
-    },
-    {
-      name: 'Edit Users',
-      value: 'Edit Users'
-    },
-    {
-      name: 'Delete Users',
-      value: 'Delete Users'
-    },
-    {
-      name: 'View Roles',
-      value: 'View Roles'
-    },
-    {
-      name: 'Create Roles',
-      value: 'Create Roles'
-    },
-    {
-      name: 'Edit Roles',
-      value: 'Edit Roles'
-    },
-    {
-      name: 'Delete Roles',
-      value: 'Delete Roles'
-    }
-  ];
+  modules: any[] = []; // Modules to be populated from API
 
   constructor(
     private fb: FormBuilder,
     private roleService: RoleService,
+    private moduleService: ModuleService, // Inject ModuleService
     private message: NzMessageService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     this.roleId = this.route.snapshot.paramMap.get('roleId') || '';
+  }
 
+  ngOnInit(): void {
+    this.initializeForm();
+    this.fetchModules(); // Fetch modules on component initialization
     if (this.roleId) {
       this.operation = 'Edit';
       this.btnName = 'Update Role';
@@ -71,8 +42,16 @@ export class RoleAddComponent {
     }
   }
 
-  ngOnInit(): void {
-    this.initializeForm();
+  // Fetch modules from the API
+  fetchModules(): void {
+    this.moduleService.getModules().subscribe({
+      next: (res: any) => {
+        this.modules = res.data.modules || []; // Assuming the API response has a 'data' field with module info
+      },
+      error: (err: any) => {
+        this.message.error('Failed to fetch modules: ' + err.message);
+      }
+    });
   }
 
   initializeForm(): void {
@@ -83,8 +62,8 @@ export class RoleAddComponent {
       ],
       role: ['', [Validators.required, Validators.minLength(3)]],
       is_active: [true],
-      permissions: [[], Validators.required],
-      remarks: ['']
+      modules: [[], Validators.required], // Bind the modules as a multi-select
+      description: [''], // Added description field for the role
     });
   }
 
@@ -99,9 +78,15 @@ export class RoleAddComponent {
       return;
     }
 
+    // Prepare the payload with the selected module IDs
+    const formValue = { 
+      ...this.roleForm.value,
+      modules: this.roleForm.value.modules.map((moduleId: any) => ( moduleId )) // Map the selected module IDs
+    };
+
     switch (this.operation) {
       case 'Add':
-        this.roleService.createRole(this.roleForm.value).subscribe({
+        this.roleService.createRole(formValue).subscribe({
           next: () => {
             this.roleForm.reset();
             this.message.success('Role created successfully');
@@ -113,7 +98,7 @@ export class RoleAddComponent {
         break;
 
       case 'Edit':
-        this.roleService.updateRole(this.roleId, this.roleForm.value).subscribe({
+        this.roleService.updateRole(this.roleId, formValue).subscribe({
           next: () => {
             this.router.navigate(['/roles/manage']);
             this.message.success('Role updated successfully');

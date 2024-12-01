@@ -33,16 +33,29 @@ export class LoginComponent {
       return;
     }
 
-    this.loginService.login(this.loginForm.value).subscribe({
+   this.loginService.login(this.loginForm.value).subscribe({
       next: (res) => {
         this.message.success('Login successful!');
         localStorage.setItem('token', res.token); // Save token
-        this.router.navigate(['/home']); // Navigate to the home page
+        const user = JSON.stringify(res.data.user);
+        console.log(user);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+
+        // Check if the user has a specific role or condition
+        if (res.data.user.type === 'User') {  // Replace 'user' with the actual condition
+          this.router.navigate(['/user']); // Navigate to the user page
+        } else {
+          this.router.navigate(['/home']); // Navigate to the home page
+        }
       },
       error: (err) => {
         this.message.error('Login failed: ' + err.message);
-      },
+      }
     });
+
+  }
+  navigateToRegister() {
+    this.router.navigate(['/admin-register']); // Navigate to the register page
   }
   // Method for cancel action (reset the form in this case)
   cancel(): void {

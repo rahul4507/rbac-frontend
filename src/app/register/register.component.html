@@ -1,0 +1,122 @@
+<div class="container mx-auto p-6">
+  <nz-card nzTitle="Register Admin" class="rounded-lg shadow-xl">
+    <form nz-form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+      <!-- Name Field -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Name <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Name is required'" class="block">
+            <input
+              nz-input
+              formControlName="name"
+              placeholder="Enter your full name"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Email <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Email is required'" class="block">
+            <input
+              nz-input
+              type="email"
+              formControlName="email"
+              placeholder="Enter your email"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Phone Field -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Phone <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Phone number is required'" class="block">
+            <input
+              nz-input
+              type="text"
+              formControlName="phone"
+              placeholder="Enter your phone number"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Date of Birth Field -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Date of Birth <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Date of birth is required'" class="block">
+            <input
+              nz-input
+              type="date"
+              formControlName="date_of_birth"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Password <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Password is required'" class="block">
+            <input
+              nz-input
+              type="password"
+              formControlName="password"
+              placeholder="Enter your password"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="grid grid-cols-12 gap-4 my-8">
+        <label class="col-span-4 font-medium text-sm text-gray-700">
+          Confirm Password <span class="text-red-500">*</span>
+        </label>
+        <div class="col-span-8">
+          <nz-form-control [nzErrorTip]="'Passwords must match'" class="block">
+            <input
+              nz-input
+              type="password"
+              formControlName="confirmPassword"
+              placeholder="Confirm your password"
+              class="w-full border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </nz-form-control>
+        </div>
+      </div>
+
+      <!-- Submit and Cancel Buttons -->
+      <div class="flex justify-end space-x-4 mt-6">
+        <button
+          nz-button
+          nzType="primary"
+          class="bg-blue-600 text-white px-6 py-2 text-lg rounded-md hover:bg-blue-700 transition duration-300 focus:ring-2 focus:ring-blue-400"
+        >
+          Register
+        </button>
+      </div>
+    </form>
+  </nz-card>
+</div>

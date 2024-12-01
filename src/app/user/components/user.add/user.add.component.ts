@@ -16,7 +16,8 @@ export class UserAddComponent {
   btnName = 'Add User';
   userForm!: FormGroup;
   roles: any[] = [];
-
+  adminEmail: string=''; // Get masterEmail from localStorage
+  password: string=''; 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
@@ -24,6 +25,12 @@ export class UserAddComponent {
     private route: ActivatedRoute,
     private router: Router
   ) {
+    // Retrieve admin user from localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const admin = JSON.parse(storedUser);
+      this.adminEmail = admin.email;  // Extract admin's email
+    }
     this.userId = this.route.snapshot.paramMap.get('userId') || '';
 
     if (this.userId) {
@@ -54,6 +61,8 @@ export class UserAddComponent {
       date_of_birth: ['', Validators.required],
       role: ['', Validators.required],
       is_active: [true],
+      masterEmail: [this.adminEmail, Validators.required],
+      password: [this.password, Validators.required] // Add masterEmail to the form
     });
   }
 
@@ -75,9 +84,12 @@ export class UserAddComponent {
       return;
     }
 
+    // Ensure masterEmail is added before sending to the server
+    const formData = { ...this.userForm.value, masterEmail: this.adminEmail };
+
     switch (this.operation) {
       case 'Add':
-        this.userService.createUser(this.userForm.value).subscribe({
+        this.userService.createUser(formData).subscribe({
           next: () => {
             this.userForm.reset();
             this.message.success('User created successfully');
@@ -89,7 +101,7 @@ export class UserAddComponent {
         break;
 
       case 'Edit':
-        this.userService.updateUser(this.userId, this.userForm.value).subscribe({
+        this.userService.updateUser(this.userId, formData).subscribe({
           next: () => {
             this.router.navigate(['/users/manage']);
             this.message.success('User updated successfully');
