@@ -23,6 +23,7 @@ import { LoginComponent } from './login/component/login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ModuleAddComponent } from './modules/components/module.add/module.add.component';
 import { ModuleManageComponent } from './modules/components/module.manage/module.manage.component';
+import { UserDashboardComponent } from './user.dashboard/user.dashboard.component';
 registerLocaleData(en);
 
 @NgModule({
@@ -31,7 +32,8 @@ registerLocaleData(en);
     LoginComponent,
     RegisterComponent,
     ModuleAddComponent,
-    ModuleManageComponent
+    ModuleManageComponent,
+    UserDashboardComponent
   ],
 
   imports: [

@@ -4,8 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './core/components/page.not.found/page.not.found.component';
 import { LoginComponent } from './login/component/login/login.component'; 
 import { RegisterComponent } from './register/register.component'; 
-import { ModuleAddComponent } from './modules/components/module.add/module.add.component';
-import { ModuleManageComponent } from './modules/components/module.manage/module.manage.component';
+import { UserDashboardComponent } from './user.dashboard/user.dashboard.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' }, // Redirect to login by default
@@ -36,6 +35,10 @@ const routes: Routes = [
   {
     path: 'modules' ,
     loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule),
+  },
+  {
+    path: 'user',
+    component: UserDashboardComponent
   },
   {
     path: '**',

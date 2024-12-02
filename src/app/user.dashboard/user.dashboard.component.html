@@ -1,0 +1,45 @@
+<div class="container">
+  <!-- Navbar -->
+  <ul nz-menu nzMode="horizontal" class="nav-menu h-12" [nzTheme]="'dark'">
+    <li nz-menu-item>
+      <span nz-icon nzType="home" class="mr-2"></span>User Interface
+    </li>
+
+    <!-- User Info on Right -->
+    <div
+      class="user-info"
+      style="
+        float: right;
+        display: flex;
+        align-items: center;
+        padding-right: 20px;
+      "
+    >
+      <nz-avatar
+        [nzText]="userName.charAt(0)"
+        style="cursor: pointer"
+      ></nz-avatar>
+      <div class="user-details" style="margin-left: 10px; cursor: pointer">
+        <span>{{ userName }}</span>
+
+        <!-- Logout Button -->
+        <button style="margin-left: 1rem" nz-button (click)="logout()">
+          Log Out
+        </button>
+      </div>
+    </div>
+  </ul>
+
+  <!-- Card Grid -->
+  <div class="row mt-4 grid grid-cols-4 p-4">
+    <div class="col-md-4" *ngFor="let module of modules">
+      <nz-card
+        [nzTitle]="module.name"
+        [nzBordered]="true"
+        style="width: 300px; margin-bottom: 20px"
+      >
+        <p>{{ module.desc }}</p>
+      </nz-card>
+    </div>
+  </div>
+</div>

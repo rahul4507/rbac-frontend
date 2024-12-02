@@ -1,68 +1,121 @@
-<ul nz-menu nzMode="horizontal" class="nav-menu" [nzTheme]="'dark'">
-  <!-- Home Menu -->
-  <li nz-menu-item [nzSelected]="activeMenu === 'home'" (click)="navigate('home')">
-    <span nz-icon nzType="home" class="mr-2"></span>Home
-  </li>
+<ul
+  nz-menu
+  nzMode="horizontal"
+  [nzTheme]="'dark'"
+  style="display: flex; justify-content: space-between; align-items: center"
+>
+  <!-- Left Side Navigation -->
+  <div style="display: flex">
+    <!-- Home Menu -->
+    <li
+      nz-menu-item
+      [nzSelected]="activeMenu === 'home'"
+      (click)="navigate('home')"
+    >
+      <span nz-icon nzType="home" class="mr-2"></span>Home
+    </li>
 
-  <!-- About Dropdown -->
-  <li nz-submenu nzTitle="About" nzPopupClassName="dropdown-menu-fixed">
-    <ul>
-      <li nz-menu-item [nzSelected]="activeMenu === 'about/project'" (click)="navigate('about/project')">
-        Project
-      </li>
-      <li nz-menu-item [nzSelected]="activeMenu === 'about/developer'" (click)="navigate('about/developer')">
-        Developer
-      </li>
-      <li nz-menu-item [nzSelected]="activeMenu === 'about/tech'" (click)="navigate('about/tech')">
-        Tech Stack Used
-      </li>
-    </ul>
-  </li>
+    <!-- About Dropdown -->
+    <li nz-submenu nzTitle="About" nzPopupClassName="dropdown-menu-fixed">
+      <ul>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'about/project'"
+          (click)="navigate('about/project')"
+        >
+          Project
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'about/developer'"
+          (click)="navigate('about/developer')"
+        >
+          Developer
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'about/tech'"
+          (click)="navigate('about/tech')"
+        >
+          Tech Stack Used
+        </li>
+      </ul>
+    </li>
 
-  <!-- User Dropdown -->
-  <li nz-submenu nzTitle="User" nzPopupClassName="dropdown-menu-fixed">
-    <ul>
-      <li nz-menu-item [nzSelected]="activeMenu === 'users/manage'" (click)="navigate('users/manage')">
-        Manage Users
-      </li>
-      <li nz-menu-item [nzSelected]="activeMenu === 'users/add'" (click)="navigate('users/add')">
-        Add User
-      </li>
-    </ul>
-  </li>
+    <!-- User Dropdown -->
+    <li nz-submenu nzTitle="User" nzPopupClassName="dropdown-menu-fixed">
+      <ul>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'users/manage'"
+          (click)="navigate('users/manage')"
+        >
+          Manage Users
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'users/add'"
+          (click)="navigate('users/add')"
+        >
+          Add User
+        </li>
+      </ul>
+    </li>
 
-  <!-- Roles Dropdown -->
-  <li nz-submenu nzTitle="Roles" nzPopupClassName="dropdown-menu-fixed">
-    <ul>
-      <li nz-menu-item [nzSelected]="activeMenu === 'roles/manage'" (click)="navigate('roles/manage')">
-        Manage Roles
-      </li>
-      <li nz-menu-item [nzSelected]="activeMenu === 'roles/add'" (click)="navigate('roles/add')">
-        Add Role
-      </li>
-    </ul>
-  </li>
+    <!-- Roles Dropdown -->
+    <li nz-submenu nzTitle="Roles" nzPopupClassName="dropdown-menu-fixed">
+      <ul>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'roles/manage'"
+          (click)="navigate('roles/manage')"
+        >
+          Manage Roles
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'roles/add'"
+          (click)="navigate('roles/add')"
+        >
+          Add Role
+        </li>
+      </ul>
+    </li>
 
-  <!-- Modules Dropdown -->
-  <li nz-submenu nzTitle="Modules" nzPopupClassName="dropdown-menu-fixed">
-    <ul>
-      <li nz-menu-item [nzSelected]="activeMenu === 'modules/manage'" (click)="navigate('modules/manage')">
-        Manage Modules
-      </li>
-      <li nz-menu-item [nzSelected]="activeMenu === 'modules/add'" (click)="navigate('modules/add')">
-        Add Module
-      </li>
-    </ul>
-  </li>
+    <!-- Modules Dropdown -->
+    <li nz-submenu nzTitle="Modules" nzPopupClassName="dropdown-menu-fixed">
+      <ul>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'modules/manage'"
+          (click)="navigate('modules/manage')"
+        >
+          Manage Modules
+        </li>
+        <li
+          nz-menu-item
+          [nzSelected]="activeMenu === 'modules/add'"
+          (click)="navigate('modules/add')"
+        >
+          Add Module
+        </li>
+      </ul>
+    </li>
+  </div>
 
   <!-- User Info on Right -->
-  <div class="user-info" style="float: right; display: flex; align-items: center; padding-right: 20px;">
-    <nz-avatar [nzText]="loggedInUser.name.charAt(0)" style="cursor: pointer;"></nz-avatar>
-    <div class="user-details" style="margin-left: 10px; cursor: pointer;">
+  <div style="display: flex; align-items: center">
+    <nz-avatar
+      nz-tooltip
+      [nzTooltipTitle]="loggedInUser.email"
+      [nzText]="loggedInUser.name.charAt(0)"
+      style="cursor: pointer; margin-right: 10px"
+    ></nz-avatar>
+    <div style="display: flex; align-items: center">
       <span>{{ loggedInUser.name }}</span>
-      <span>{{ loggedInUser.email }}</span> <!-- Displaying user email directly -->
+      <button style="margin-left: 1rem" nz-button (click)="logout()">
+        Log Out
+      </button>
     </div>
-    <!-- Logout Button -->
-    <button nz-button (click)="logout()">Log Out</button>
   </div>
 </ul>
